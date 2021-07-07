@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<H2>All Users</H2>
+<table border="1">
+    <tbody>
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tr th:each="user:${allUsers}">
+        <td th:utext="${user.id}">index</td>
+        <td th:utext="${user.name}">name</td>
+<!--        <td th:utext="${user.lastName}">lastName</td>-->
+        <td>
+                <a th:href="@{/{id}/show (id=${user.getId()})}" th:text="${user.lastName}">lastName</a>
+        </td>
+<!--user name + last name in one cell-->
+<!--        <td>-->
+<!--            <a th:href="@{/{id}/show (id=${user.getId()})}"-->
+<!--               th:text="${user.getName()} + ${user.lastName}">lastName</a>-->
+<!--        </td>-->
+
+        <td th:utext="${user.age}">age</td>
+        <td><form th:action="@{/{id}/edit(id=${user.getId()})}">
+            <button>Edit</button></form></td>
+        <td><form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
+            <input type="submit" value="-">
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<form th:action ="@{/new}">
+    <button>Add new User</button></form></form>
+</body>
+</html>
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->
